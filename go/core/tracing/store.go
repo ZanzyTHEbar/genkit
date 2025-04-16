@@ -16,6 +16,8 @@
 
 package tracing
 
+import "go.opentelemetry.io/otel/attribute"
+
 // Data is information about a trace.
 type Data struct {
 	TraceID     string               `json:"traceId"`
@@ -86,6 +88,7 @@ type InstrumentationLibrary struct {
 	Name      string `json:"name"`
 	Version   string `json:"version"`
 	SchemaURL string `json:"schemaUrl,omitempty"`
+	Attributes attribute.Set `json:"attributes,omitempty"`
 }
 
 // Status is a copy of [go.opentelemetry.io/otel/sdk/trace.Status],

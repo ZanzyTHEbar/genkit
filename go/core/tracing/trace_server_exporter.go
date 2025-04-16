@@ -102,7 +102,8 @@ func convertSpan(span sdktrace.ReadOnlySpan) *SpanData {
 		Attributes:              attributesToMap(span.Attributes()),
 		DisplayName:             span.Name(),
 		Links:                   convertLinks(span.Links()),
-		InstrumentationLibrary:  InstrumentationLibrary(span.InstrumentationLibrary()),
+		// instrumentation.Library is deprecated: use [Scope] instead.
+		InstrumentationLibrary:  InstrumentationLibrary(span.InstrumentationScope()),
 		SpanKind:                strings.ToUpper(span.SpanKind().String()),
 		SameProcessAsParentSpan: BoolValue{!sc.IsRemote()},
 		Status:                  convertStatus(span.Status()),
